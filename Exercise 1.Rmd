@@ -1,0 +1,43 @@
+---
+title: 'MY472: Formative Problem Set_Ex_1'
+author: '202008371'
+term: "Autumn Term 2024"
+submission_date: "01/11/2024"
+output: html_document
+---
+```{r setup, include=FALSE}
+# this chunk contains code that sets global options for the entire .Rmd. 
+
+knitr::opts_chunk$set(echo = TRUE)
+# actually set the global chunk options. 
+# we set echo=TRUE to suppress code such that it by default does appear throughout the document. 
+# note: this is the .Rmd default
+```
+
+```{r}
+#this chunk loads the tidyverse package
+library(tidyverse)
+```
+
+## Exercise 1
+```{r}
+# this chunk imports the inbuilt R dataset: USJudgeRatings, inspects the data.
+data("USJudgeRatings") #loading the dataset
+head(USJudgeRatings) #inspecting the dataset
+```
+The dataset loaded above includes lawyers' ratings of state judges in the US Superior Court. It is named `USJudgeRatings`. The data contains 12 numeric variables and 43 observations. It is derived from New Haven Register, 14 January, 1977 (from John Hartigan).
+
+```{r}
+# this chunk defines a function which calculates the average overall rating of each judge out of 10.
+#the first part of the code defines the transformation function
+avg_rating <- function(data){
+  data$overall_rating <- rowMeans(data, na.rm = TRUE)
+  return(data)
+}
+
+# the second part of the code applies the function to the dataset of interest and saves the transformed dataset in a new variable.
+ratings <- avg_rating(USJudgeRatings)
+
+# the final part of this code prints the modified dataset
+print(ratings)
+```
