@@ -41,3 +41,17 @@ ratings <- avg_rating(USJudgeRatings)
 # the final part of this code prints the modified dataset
 print(ratings)
 ```
+
+```{r}
+# this chunk defines a second function which calculates judge's total rating out of 120.
+#the first part of the code defines the transformation function
+total_rating <- function(data_new){
+  data_new$total_rating <- rowSums(data_new, na.rm = TRUE)
+  return(data_new)
+}
+# the second part of the code applies the function to the dataset of interest and saves the transformed dataset.
+ratings <- total_rating(ratings)
+
+# the final part of this code prints the modified dataset
+print(ratings)
+```
